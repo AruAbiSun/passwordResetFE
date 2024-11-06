@@ -1,8 +1,11 @@
+/* eslint-disable no-unused-vars */
 //import React from 'react';
 import axios from "axios";
 import { useState } from "react";
 //import { useParams } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ResertPassword = () => {
   const [password, setPassword] = useState("");
@@ -27,9 +30,9 @@ const ResertPassword = () => {
           password,
         }
       );
-      setResponseMsg(res.data.message);
+      toast.success(res.data.message);
     } catch (error) {
-      setResponseMsg(error.response?.data?.message || "error");
+      toast.error(error.response?.data?.message || "Error");
     }
   };
 
@@ -76,7 +79,7 @@ const ResertPassword = () => {
           </div>
         </div>
       </div>
-      <h1>{responseMsg}</h1>
+      <ToastContainer position="top-right" autoClose={5000} />
     </div>
   );
 };

@@ -4,13 +4,15 @@ import { useState } from "react";
 import axios from "axios";
 import "./Style.css";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 /* eslint-disable react/prop-types */
 
 const UserLogin = ({ setToken }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [responseMsg, setResponseMsg] = useState("");
+  //const [responseMsg, setResponseMsg] = useState("");
 
   //const [token, setToken] = useState("");
 
@@ -18,16 +20,19 @@ const UserLogin = ({ setToken }) => {
     e.preventDefault();
     console.log("login api payloads", email, password);
     const payloads = { email, password };
-    await axios
-      .post("https://passwordresetbe-2.onrender.com/api/user/login", payloads)
-      .then((res) => {
-        setResponseMsg(res.data.message);
-        setToken(res.data.token);
-      })
-      .catch((err) => {
-        console.log(err);
-        setResponseMsg(err.response.data.message); //default structure for err msg
-      });
+    try {
+      const res = await axios.post(
+        "https://passwordresetbe-2.onrender.com/api/user/login",
+        payloads
+      );
+      toast.success(res.data.message || "Login Successful");
+      setToken(res.data.token);
+    } catch (error) {
+      console.log(error);
+      toast.error(
+        error.response?.data?.message || "Login failed. Please try again."
+      );
+    }
     setEmail("");
     setPassword("");
   };
@@ -99,7 +104,7 @@ const UserLogin = ({ setToken }) => {
           </div>
         </div>
       </div>
-      <h1>{responseMsg}</h1>
+      <ToastContainer position="top-right" autoClose={5000} />
     </div>
   );
 };

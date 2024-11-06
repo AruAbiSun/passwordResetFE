@@ -1,10 +1,12 @@
 //import React from 'react';
 import axios from "axios";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
-  const [responseMsg, setResponseMsg] = useState("");
+  //const [responseMsg, setResponseMsg] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -12,8 +14,8 @@ const ForgotPassword = () => {
       .post("https://passwordresetbe-2.onrender.com/api/user/forgot-password", {
         email,
       })
-      .then((res) => setResponseMsg(res.data.message))
-      .catch((err) => setResponseMsg(err.response?.data?.message || "error"));
+      .then((res) => toast.success(res.data.message))
+      .catch((err) => toast.error(err.response?.data?.message || "Error"));
     setEmail("");
   };
   return (
@@ -49,7 +51,7 @@ const ForgotPassword = () => {
           </div>
         </div>
       </div>
-      <h1>{responseMsg}</h1>
+      <ToastContainer position="top-right" autoClose={5000} />
     </div>
   );
 };
