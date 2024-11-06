@@ -18,7 +18,7 @@ const UserRegister = () => {
     const payloads = { userName, email, password, role };
     await axios
       .post(
-        "https://passwordresetbe-1.onrender.com/api/user/register",
+        "https://passwordresetbe-2.onrender.com/api/user/register",
         payloads
       )
       .then((res) => setResponseMsg(res.data.message))

@@ -9,7 +9,7 @@ const ForgotPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axios
-      .post("https://passwordresetbe-1.onrender.com/api/user/forgot-password", {
+      .post("https://passwordresetbe-2.onrender.com/api/user/forgot-password", {
         email,
       })
       .then((res) => setResponseMsg(res.data.message))

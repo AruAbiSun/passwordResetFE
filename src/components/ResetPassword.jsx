@@ -21,7 +21,7 @@ const ResertPassword = () => {
     }
     try {
       const res = await axios.post(
-        "https://passwordresetbe-1.onrender.com/api/user/reset-password",
+        "https://passwordresetbe-2.onrender.com/api/user/reset-password",
         {
           token,
           password,

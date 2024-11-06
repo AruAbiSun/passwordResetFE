@@ -19,7 +19,7 @@ const UserLogin = ({ setToken }) => {
     console.log("login api payloads", email, password);
     const payloads = { email, password };
     await axios
-      .post("https://passwordresetbe-1.onrender.com/api/user/login", payloads)
+      .post("https://passwordresetbe-2.onrender.com/api/user/login", payloads)
       .then((res) => {
         setResponseMsg(res.data.message);
         setToken(res.data.token);
