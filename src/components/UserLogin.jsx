@@ -30,7 +30,7 @@ const UserLogin = ({ setToken }) => {
     } catch (error) {
       console.log(error);
       toast.error(
-        error.response?.data?.message || "Login failed. Please try again."
+        error.response.data.message || "Login failed. Please try again."
       );
     }
     setEmail("");
