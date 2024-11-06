@@ -17,7 +17,10 @@ const UserRegister = () => {
     console.log("register api payloads", userName, email, password, role);
     const payloads = { userName, email, password, role };
     await axios
-      .post("http://localhost:4000/api/user/register", payloads)
+      .post(
+        "https://passwordresetbe-1.onrender.com/api/user/register",
+        payloads
+      )
       .then((res) => setResponseMsg(res.data.message))
       .catch((err) => {
         console.log(err);
