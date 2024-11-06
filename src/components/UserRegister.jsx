@@ -1,8 +1,11 @@
+/* eslint-disable no-unused-vars */
 import axios from "axios";
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Style.css";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const UserRegister = () => {
   const [userName, setUserName] = useState("");
@@ -21,8 +24,9 @@ const UserRegister = () => {
         "https://passwordresetbe-2.onrender.com/api/user/register",
         payloads
       )
-      .then((res) => setResponseMsg(res.data.message))
+      .then((res) => toast.success(res.data.message))
       .catch((err) => {
+        toast.error("Registration failed. Please try again.");
         console.log(err);
       });
     setEmail("");
@@ -100,7 +104,7 @@ const UserRegister = () => {
           </div>
         </div>
       </div>
-      <h1>{responseMsg}</h1>
+      <ToastContainer position="top-right" autoClose={5000} />
     </div>
   );
 };
