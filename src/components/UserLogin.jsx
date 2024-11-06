@@ -20,6 +20,8 @@ const UserLogin = ({ setToken }) => {
     e.preventDefault();
     console.log("login api payloads", email, password);
     const payloads = { email, password };
+    setEmail("");
+    setPassword("");
     try {
       const res = await axios.post(
         "https://passwordresetbe-2.onrender.com/api/user/login",
@@ -33,8 +35,6 @@ const UserLogin = ({ setToken }) => {
         error.response.data.message || "Login failed. Please try again."
       );
     }
-    setEmail("");
-    setPassword("");
   };
 
   const navigate = useNavigate();
