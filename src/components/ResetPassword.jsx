@@ -22,6 +22,8 @@ const ResertPassword = () => {
     if (password !== confirmPassword) {
       return setResponseMsg("password do not match");
     }
+    setPassword("");
+    setConfirmPassword("");
     try {
       const res = await axios.post(
         "https://passwordresetbe-2.onrender.com/api/user/reset-password",
